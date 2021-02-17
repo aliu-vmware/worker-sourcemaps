@@ -10,9 +10,12 @@ const webpack = require("webpack"),
 module.exports = {
   target: "web",
   cache: true,
-  devtool: "eval-source-map",
-  contentBase: path.join(__dirname, "public"),
-  mode: "development",
+  devtool: "source-map",
+  mode: "production",
+  devServer: {
+    contentBase: path.join(__dirname, "public"),
+    publicPath: "/"
+  },
   entry: {
     app: path.join(srcPath, "app.js"),
     server: "webpack/hot/dev-server",
@@ -56,18 +59,7 @@ module.exports = {
         },
       },
       extractComments: false
-    })],
-    splitChunks: {
-      minChunks: 2,
-      cacheGroups: {
-        common: {
-          name: "common",
-          chunks: "all",
-          reuseExistingChunk: true,
-          priority: -1
-        }
-      }
-    }
+    })]
   },
   plugins: [
     new webpack.DefinePlugin({

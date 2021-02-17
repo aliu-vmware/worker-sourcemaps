@@ -1,7 +1,7 @@
 import TestWorker from "./TestWorker.worker";
 import { wrap, proxy, releaseProxy, transfer, createEndpoint } from "comlink";
 
-async createAsyncWorker() {
+async function createAsyncWorker() {
   const port = new TestWorker();
   const TestWorkerWrapper = wrap(port);
 
@@ -10,7 +10,15 @@ async createAsyncWorker() {
   return { port, testClass };
 }
 
-window.addEventListener("load", async () => {
-  worker = await createAsyncWorker();
-  worker.run().then(() => console.log("done"));
+async function main() {
+  const {port, testClass: worker} = await createAsyncWorker();
+  await worker.run();
+  () => console.log("done");
+}
+
+console.log("compiled");
+
+window.addEventListener("load", () => {
+    console.log("initialized");
+    main();
 });
