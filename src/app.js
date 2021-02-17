@@ -1,5 +1,13 @@
 import TestWorker from "./TestWorker.worker";
 import { wrap, proxy, releaseProxy, transfer, createEndpoint } from "comlink";
+import * as Sentry from "@sentry/browser";
+import { Integrations } from "@sentry/tracing";
+
+Sentry.init({
+  dsn: "https://77d51ee5aad14e9ebbc81fa6aa82381d@o448817.ingest.sentry.io/5640392",
+  integrations: [new Integrations.BrowserTracing()],
+  tracesSampleRate: 1.0,
+});
 
 async function createAsyncWorker() {
   const port = new TestWorker();

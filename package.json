@@ -37,6 +37,8 @@
     "worker-loader": "^2.0.0"
   },
   "dependencies": {
+    "@sentry/browser": "^6.1.0",
+    "@sentry/tracing": "^6.1.0",
     "comlink": "^4.3.0",
     "core-js": "^3.6.4"
   }
