@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server",
-    "build": "rm -rf ./build; mkdir ./build; webpack; cp public/* build",
+    "build": "rm -rf ./build; mkdir ./build; webpack; npm run sourcemaps; cp public/* build",
     "prod": "node prod.js",
+    "sourcemaps": "node upload-sourcemaps.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -29,6 +30,7 @@
     "babel-plugin-transform-imports": "^2.0.0",
     "express": "^4.17.1",
     "file-loader": "^1.1.11",
+    "rollbar-cli": "^0.1.0",
     "script-loader": "0.7.0",
     "terser-webpack-plugin": "^2.3.5",
     "webpack": "^4.41.6",
