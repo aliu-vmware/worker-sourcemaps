@@ -1,0 +1,37 @@
+{
+    "presets": [
+        "@babel/preset-env",
+        "@babel/preset-react"
+    ],
+    "plugins": [
+        "@babel/plugin-transform-runtime",
+        "@babel/plugin-proposal-class-properties",
+        "@babel/plugin-proposal-export-default-from",
+        "@babel/plugin-proposal-export-namespace-from",
+        ["transform-imports", {
+          "react-bootstrap": {
+            "transform": "react-bootstrap/lib/${member}",
+            "preventFullImport": true
+          },
+          "lodash": {
+            "transform": "lodash/${member}",
+            "preventFullImport": true
+          }
+        }],
+    ],
+    "env": {
+        "test": {
+            "presets": [
+                ["@babel/preset-env",{
+                    "targets": "last 1 version, node >= 8",
+                    "useBuiltIns": "usage",
+                    "corejs": 3,
+                }],
+            ],
+            "plugins": ["@babel/transform-modules-commonjs"]
+        },
+        "production": {
+            "plugins": ["@babel/plugin-transform-react-inline-elements"]
+        }
+    }
+}
