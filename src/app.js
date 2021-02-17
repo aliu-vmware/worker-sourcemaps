@@ -18,6 +18,8 @@ async function main() {
 
 console.log("compiled");
 
+window.uiVersion = __COMMIT_HASH__;
+
 window.addEventListener("load", () => {
     console.log("initialized");
     main();
